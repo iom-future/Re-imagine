@@ -7,8 +7,34 @@
     --dark-mode-background:#101828;
     --dark-mode-background-lighter: #242d49;
 }
+html{
+    font-size: 50%;
+}
 body{
   background-color: #eaeaea;
+}
+.navigation-bar{
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 1px solid silver;
+}
+.main-nav{
+     width: 50%;
+     display: flex;
+    gap: 3rem;
+    justify-content: flex-end;
+}
+.nav-area{
+   
+}
+.nav-area .bi{
+    font-size: 3rem;
+}
+.hamburger-menu .nav-links li{
+    list-style: none;
+}
+.hamburger-menu{
+    display:none;
 }
 .color-container{
     display: grid;
