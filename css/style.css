@@ -1,0 +1,93 @@
+.body{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+:root{
+    --dark-mode-background:#101828;
+    --dark-mode-background-lighter: #242d49;
+}
+body{
+  background-color: #eaeaea;
+}
+.color-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+    grid-auto-rows: 300px;
+    gap: 1.2rem;
+}
+.color-box{What Our Customers Say
+ /*   border: 1px solid black;*/
+    box-shadow: 5px 5px 10px rgba(128, 128, 128, 0.35);
+    background-color: white;
+  /*  display: flex;
+    flex-flow: wrap column;*/
+}
+.color-palette{
+    height: 50%;
+    width:100%;
+    background-color: black;
+}
+.color-sec-header{
+    text-align: center;
+    font-family: "Moronic Misfire (BRK)";
+    font-size: 4rem;
+}
+.icons,.color-info>h3{
+    margin-left: 1rem;
+ }
+.icons >.bi{
+    margin:0.5rem;
+}
+.generate-color-btn{
+/*    background: conic-gradient(20deg,pink,red,blue);*/
+    position: relative;
+    left: 40%;
+    background:white;
+    border: none;
+    /*box-shadow: 5px 5px 10px var(--color);*/
+    font-size: 1.5rem;
+   backdrop-filter: blur(100);
+    text-align: center;
+    margin-top: 5rem;
+    padding: 0.7rem;
+    border-radius: 10px;
+}
+@property --angle{
+  syntax: '<angle>';
+    initial-value: 0deg;
+    inherits: false;
+}
+.generate-color-btn::after,.generate-color-btn::before{
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    background-image: conic-gradient(from var(--angle),
+    #fb4141,
+    #0fe10f,
+    #3d3df8,
+    #fb4141
+    );
+    border-radius: 10px;
+    padding: 0.3rem;
+    z-index: -1;
+    animation: 3s spinGlow linear infinite;
+}
+.generate-color-btn::before{
+    filter: blur(1.3rem);
+    opacity: 1;
+}
+
+
+@keyframes spinGlow{
+    from{
+        --angle: 0deg;
+    }
+    to{
+        --angle: 360deg;
+    }
+}
