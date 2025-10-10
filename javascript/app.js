@@ -1,8 +1,8 @@
 // Drop down algorithm
 
 //get elements
-let dropDownMenu = document.querySelectorAll('.nav-links li');
-let hamburgerIcon = document.querySelector('.bi bi-list');
+let dropDownMenu = document.querySelector('.nav-links');
+let hamburgerIcon = document.querySelector('.bi-list');
 
 //hide cancel icon
 let cancelIcon = document.querySelector('.bi-x');
@@ -10,8 +10,18 @@ cancelIcon.style.display = 'none';
 
 //display menu
 hamburgerIcon.addEventListener('click',()=>{
+  dropDownMenu.style.display = 'flex';
+  cancelIcon.style.display = 'block';
+  hamburgerIcon.style.display = 'none';
+  console.log('button is working');
+});
 
-})
+//remove menu
+cancelIcon.addEventListener('click',()=>{
+    dropDownMenu.style.display = 'none';
+    hamburgerIcon.style.display='block';
+    cancelIcon.style.display = "none"; 
+});
 
 //IOM'S COLOR GENERATION ALGORITHM
 // Get required elements from DOM-> button clicked ? generate random rgb numbers -> Apply to each color palette-> Display on browser : Do nothing

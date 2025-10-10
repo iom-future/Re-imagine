@@ -29,7 +29,7 @@ html{
         align-self: center;
 }
 .nav-links{
-    display: flex;
+    display: none;
     background-color: #d13c3c;
     position: fixed;
     margin-top: 0;
