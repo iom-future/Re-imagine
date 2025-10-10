@@ -1,4 +1,4 @@
-.body{
+body{
     padding: 0;
     margin: 0;
     box-sizing: border-box;
@@ -16,17 +16,24 @@ html{
         justify-content: space-between;
         border-bottom: 1px solid white;
         padding-left: 1rem;
-        
+        margin: 10px;
+        height: 8%;
 }
-.company-area,.nav-essentials,.nav-icons{
+.company-area,.nav-essentials,.menu-icons-btn{
     z-index: 5;
+}
+.company-area{
+    /* border: 2px solid green; */
 }
 .main-nav{
         width: 50%;
+        height: 100%;
         display: flex;
-        gap: 5rem;
+        gap: 3rem;
         justify-content: flex-end;
         align-self: center;
+        /* border: 2px solid black; */
+
 }
 .nav-links{
     display: none;
@@ -44,12 +51,26 @@ html{
     align-items: center;
     justify-content: center;
 }
-.nav-icons{
+.nav-essentials{
+    width:70%;
+    /* border: 2px solid green;  */
+}
+.menu-icons-btn{
+    height:100%;
+    width: 100%;
    position: relative;
+   align-self: center;
+   position: relative;
+   border: 2px solid yellow;
 }
 .nav-icons .bi{
     position: absolute;
     right: 0;
+    font-size: 2rem;
+    transition: opacity 0.3s ease;
+}
+.nav-area{
+    width: 30%;
 }
 .nav-area .bi{
     font-size: 3rem;
@@ -59,14 +80,23 @@ html{
     font-size: 3rem;
     margin: 0;
 }
-
+.menu-btn{
+  
+    border: none;
+}
+.active-menu-btn{
+    display: block;
+}
 .donate-btn{
     border-radius: 10px;
+    height: 100%;
+    width: 100%;
     border: none;
     color: white;
-    background-color: purple;
+    /* background-color: purple; */
+    background: linear-gradient(210deg,purple,lightblue);
     padding: 0.7rem;
-    font-size: 1.5rem;
+    font-size: 2rem;
     cursor: pointer;
 }
 .donate-btn .bi{

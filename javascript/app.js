@@ -2,25 +2,38 @@
 
 //get elements
 let dropDownMenu = document.querySelector('.nav-links');
-let hamburgerIcon = document.querySelector('.bi-list');
+let menuBtn = document.querySelector(".menu-btn");
+let hamburgerBtn = document.querySelector('.hamburger-btn');
+let cancelBtn = document.querySelector('.cancel-btn');
 
+console.log(cancelBtn);
+console.log(hamburgerBtn);
 //hide cancel icon
-let cancelIcon = document.querySelector('.bi-x');
-cancelIcon.style.display = 'none';
+cancelBtn.style.display = 'none';
 
+//Remove Menu Function
+function removeMenu(){
+
+}
 //display menu
-hamburgerIcon.addEventListener('click',()=>{
-  dropDownMenu.style.display = 'flex';
-  cancelIcon.style.display = 'block';
-  hamburgerIcon.style.display = 'none';
-  console.log('button is working');
+hamburgerBtn.addEventListener('click',()=>{
+    /* cancelBtn.classList.add('active-menu-btn');
+    hamburgerBtn.classList.remove('active-menu-btn'); */
+    hamburgerBtn.style.display="none";
+    cancelBtn.style.display = 'block';
+    dropDownMenu.style.display = 'flex';
+    console.log(cancelBtn);
+    console.log(hamburgerBtn);
+    console.log('button is working');
 });
 
 //remove menu
-cancelIcon.addEventListener('click',()=>{
+cancelBtn.addEventListener('click',()=>{
     dropDownMenu.style.display = 'none';
-    hamburgerIcon.style.display='block';
-    cancelIcon.style.display = "none"; 
+    hamburgerBtn.style.display='block';
+    cancelBtn.style.display = "none";
+    console.log(cancelBtn);
+    console.log(hamburgerBtn); 
 });
 
 //IOM'S COLOR GENERATION ALGORITHM
