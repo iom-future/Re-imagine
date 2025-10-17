@@ -74,3 +74,55 @@ colorBtn.addEventListener('click',()=>{
         index++;//makes it possible to get the next box h3 after each iteration
     })
 })
+
+
+//GENERATE RANDOM FONT
+async function fetchFont() {
+    console.time("checkFetchingFontSpeed"); //to check speed of fetching font
+
+    //Fetch font api
+    let response = await fetch("https://www.googleapis.com/webfonts/v1/webfonts?key=AIzaSyDKRcuBI4y2JTfcm76fwKro47YYHuc1tBE");
+
+   console.timeEnd("checkFetchingFontSpeed");
+
+   // Turn fetched data to json/object format
+    let responseInJson = await response.json();
+
+    //get the font property from the responseInJson Object
+    let fontArray = await responseInJson.items
+
+    //get length of fontArray to determine the range to get random font from
+    let rangeOfFont = await fontArray.length
+
+    //get Index of random font
+    let randomFontIndex = Math.floor(Math.random() * rangeOfFont+1); //generate a random index between 0 and the range of fonts
+
+    /*  console.log(rangeOfFont);
+     console.log(randomFontIndex); 
+     for debugging sake*/
+
+     //get random font family
+     return fontArray[randomFontIndex].family; //an async function always return a PROMISE
+}
+
+console.log(`fetch font function returns a : ${fetchFont()}`); // this will be a promise
+
+//To get the actual resolved value of the PROMISE the async function (fetchFont()) gives
+
+//get the element whose font you want to change
+const colorSectionHeader = document.querySelector(".color-sec-header");
+async function getFontFamily(){
+    //use an async function to wait for this promise to resolve
+     await fetchFont().then(fontFamily=>{
+        colorSectionHeader.style.fontFamily =  `${fontFamily}`
+});
+
+console.log(`This is the header font family: ${colorSectionHeader.style.fontFamily}`);
+}
+
+getFontFamily();
+
+
+
+
+

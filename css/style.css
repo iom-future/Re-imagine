@@ -109,7 +109,7 @@ html{
     grid-auto-rows: 300px;
     gap: 1.2rem;
 }
-.color-box{What Our Customers Say
+.color-box{
  /*   border: 1px solid black;*/
     box-shadow: 5px 5px 10px rgba(128, 128, 128, 0.35);
     background-color: white;
