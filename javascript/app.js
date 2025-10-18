@@ -101,28 +101,42 @@ async function fetchFont() {
      console.log(randomFontIndex); 
      for debugging sake*/
 
-     //get random font family
-     return fontArray[randomFontIndex].family; //an async function always return a PROMISE
+     //return basic details for establishing a @font-face{} rule
+     return {src: fontArray[randomFontIndex].files.regular,
+             fontFamily: fontArray[randomFontIndex].family   
+     }; //an async function always return a PROMISE
 }
 
 console.log(`fetch font function returns a : ${fetchFont()}`); // this will be a promise
 
-//To get the actual resolved value of the PROMISE the async function (fetchFont()) gives
 
 //get the element whose font you want to change
 const colorSectionHeader = document.querySelector(".color-sec-header");
-async function getFontFamily(){
-    //use an async function to wait for this promise to resolve
-     await fetchFont().then(fontFamily=>{
-        colorSectionHeader.style.fontFamily =  `${fontFamily}`
-});
 
-console.log(`This is the header font family: ${colorSectionHeader.style.fontFamily}`);
+//create the internal stylesheet for writing the @font-face rule
+let fontOnlyStyleSheet = document.createElement("style");
+document.head.append(fontOnlyStyleSheet);
+
+//To get the actual resolved value of the PROMISE the async function (fetchFont()) gives
+async function getFontFamily(targetElement){
+    //use an async function to wait for this promise to resolve
+    fontDetails = await fetchFont();
+    fontOnlyStyleSheet.textContent = `
+            @font-face{
+                font-family: "${fontDetails.fontFamily}";
+                src: url('${fontDetails.src}')  format("truetype");
+            }
+        `
+    targetElement.style.fontFamily =  `"${fontDetails.fontFamily}"`
+    console.log(`This is the header font family: ${targetElement.style.fontFamily}`);
 }
 
-getFontFamily();
 
 
 
-
-
+let donateBtn = document.querySelector(".donate-btn");
+donateBtn.addEventListener("click",()=>{
+    getFontFamily(colorSectionHeader);
+})
+/* 
+//  TODO: prompt AI with this to understand why color header font isn't displaying: "Just Me Again Down Here","Edu VIC WA NT Hand Pre", "Schibsted Grotesk" are this webfont , i fetched them from google font API and those are font family, i put them as the font family an elemnt but the font family of the element doesn't seem to change, is it cause the font aren't web font so i have to either use the @import{}, or download it or its because they are in commas, how can i get hte actual URL from the api items object of arrays */
