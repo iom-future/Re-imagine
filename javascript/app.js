@@ -151,5 +151,4 @@ let donateBtn = document.querySelector(".donate-btn");
 donateBtn.addEventListener("click",()=>{
     getFontFamily(colorSectionHeader);
 })
-/* 
-//  TODO: prompt AI with this to understand why color header font isn't displaying: "Just Me Again Down Here","Edu VIC WA NT Hand Pre", "Schibsted Grotesk" are this webfont , i fetched them from google font API and those are font family, i put them as the font family an elemnt but the font family of the element doesn't seem to change, is it cause the font aren't web font so i have to either use the @import{}, or download it or its because they are in commas, how can i get hte actual URL from the api items object of arrays */
+
