@@ -78,13 +78,21 @@ colorBtn.addEventListener('click',()=>{
 
 //GENERATE RANDOM FONT
 async function fetchFont() {
-    console.time("checkFetchingFontSpeed"); //to check speed of fetching font
+    //try-catch block to handle errors
+    try{
+          //try All this code;
+        //  Fetch font api; A RISKY CODE THAT COULD FAIL i.e return error
+        
+   console.time("checkFetchingFontSpeed"); //to check speed of fetching font
 
     //Fetch font api
     let response = await fetch("https://www.googleapis.com/webfonts/v1/webfonts?key=AIzaSyDKRcuBI4y2JTfcm76fwKro47YYHuc1tBE");
 
    console.timeEnd("checkFetchingFontSpeed");
-
+    //if fetch fail due to some reason handle it,and don't crash the program but throw an error [object]
+        if(!response.ok){
+            throw new Error();
+        }
    // Turn fetched data to json/object format
     let responseInJson = await response.json();
 
@@ -105,6 +113,11 @@ async function fetchFont() {
      return {src: fontArray[randomFontIndex].files.regular,
              fontFamily: fontArray[randomFontIndex].family   
      }; //an async function always return a PROMISE
+    }catch(error){
+        alert("Can't fetch font, try again");
+      
+    }
+ 
 }
 
 console.log(`fetch font function returns a : ${fetchFont()}`); // this will be a promise
