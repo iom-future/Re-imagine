@@ -1,0 +1,8 @@
+FOR BETTER OPTIMIZATION
+related to downloading files/ fetching API , the issue of slow process due to network other criterion can be fixed by thinking in abstraction or delegation
+
+rather than fetching the fot when the user needs it at that time , we can fetch the font TO a file that doesn't need data connection for accessing it, so that when the ant to fetch the font it, it takes it from a file thats not too far and doesn't need internet connection for  accessing it 
+
+google font from the CDN -----> JSON file -----> browser
+
+so we send to the JSON file the same time the time the browser is rendering elements

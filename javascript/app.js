@@ -93,11 +93,16 @@ async function fetchFont() {
         if(!response.ok){
             throw new Error();
         }
+
+        console.time("runtime speed for converting API data to object");
    // Turn fetched data to json/object format
     let responseInJson = await response.json();
+        console.timeEnd("runtime speed for converting API data to object");
 
+     console.time("runtime speed for getting the font array");
     //get the font property from the responseInJson Object
     let fontArray = await responseInJson.items
+     console.timeEnd("runtime speed for getting the font array");
 
     //get length of fontArray to determine the range to get random font from
     let rangeOfFont = await fontArray.length
@@ -131,13 +136,14 @@ let fontOnlyStyleSheet = document.createElement("style");
 document.head.append(fontOnlyStyleSheet);
 
 //To get the actual resolved value of the PROMISE the async function (fetchFont()) gives
-async function getFontFamily(targetElement){
+async function getFont(targetElement){
     //use an async function to wait for this promise to resolve
     fontDetails = await fetchFont();
     fontOnlyStyleSheet.textContent = `
             @font-face{
                 font-family: "${fontDetails.fontFamily}";
                 src: url('${fontDetails.src}')  format("truetype");
+                 font-display: swap;
             }
         `
     targetElement.style.fontFamily =  `"${fontDetails.fontFamily}"`
@@ -149,6 +155,7 @@ async function getFontFamily(targetElement){
 
 let donateBtn = document.querySelector(".donate-btn");
 donateBtn.addEventListener("click",()=>{
-    getFontFamily(colorSectionHeader);
+    getFont(colorSectionHeader);
+    donateBtn.innerText = colorSectionHeader.fontFamily;
 })
 
