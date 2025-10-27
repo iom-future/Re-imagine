@@ -76,56 +76,36 @@ colorBtn.addEventListener('click',()=>{
 })
 
 
-//GENERATE RANDOM FONT
-async function fetchFont() {
+//FETCH FONT
+async function fetchFontDetails() {
     //try-catch block to handle errors
     try{
-          //try All this code;
+        //try All this code;
         //  Fetch font api; A RISKY CODE THAT COULD FAIL i.e return error
-        
-   console.time("checkFetchingFontSpeed"); //to check speed of fetching font
-
-    //Fetch font api
-    let response = await fetch("https://www.googleapis.com/webfonts/v1/webfonts?key=AIzaSyDKRcuBI4y2JTfcm76fwKro47YYHuc1tBE");
-
-   console.timeEnd("checkFetchingFontSpeed");
-    //if fetch fail due to some reason handle it,and don't crash the program but throw an error [object]
+        let response = await fetch("./data/fonts-data.json");
         if(!response.ok){
             throw new Error();
         }
+    
+        // Turn fetched data to json/object format
+        let fontArray = await response.json();
 
-        console.time("runtime speed for converting API data to object");
-   // Turn fetched data to json/object format
-    let responseInJson = await response.json();
-        console.timeEnd("runtime speed for converting API data to object");
+        //get length of fontArray to determine the range to get random font from
+        let rangeOfFont = await fontArray.length;
 
-     console.time("runtime speed for getting the font array");
-    //get the font property from the responseInJson Object
-    let fontArray = await responseInJson.items
-     console.timeEnd("runtime speed for getting the font array");
+        //get Index of random font
+        let randomFontIndex = Math.floor(Math.random() * rangeOfFont); //generate a random index between 0 and the range of fonts
 
-    //get length of fontArray to determine the range to get random font from
-    let rangeOfFont = await fontArray.length
-
-    //get Index of random font
-    let randomFontIndex = Math.floor(Math.random() * rangeOfFont+1); //generate a random index between 0 and the range of fonts
-
-    /*  console.log(rangeOfFont);
-     console.log(randomFontIndex); 
-     for debugging sake*/
-
-     //return basic details for establishing a @font-face{} rule
-     return {src: fontArray[randomFontIndex].files.regular,
-             fontFamily: fontArray[randomFontIndex].family   
-     }; //an async function always return a PROMISE
+        //  return basic details for establishing a @font-face{} rule
+         return {src: fontArray[randomFontIndex].files.regular,
+                 fontFamily: fontArray[randomFontIndex].family,
+                 category: fontArray[randomFontIndex].category   
+         }; //an async function always return a PROMISE
     }catch(error){
-        alert("Can't fetch font, try again");
-      
+        console.error(error.message);
     }
- 
 }
-
-console.log(`fetch font function returns a : ${fetchFont()}`); // this will be a promise
+console.log(`fetch font function returns a : ${fetchFontDetails()}`); // this will be a promise
 
 
 //get the element whose font you want to change
@@ -135,15 +115,15 @@ const colorSectionHeader = document.querySelector(".color-sec-header");
 let fontOnlyStyleSheet = document.createElement("style");
 document.head.append(fontOnlyStyleSheet);
 
-//To get the actual resolved value of the PROMISE the async function (fetchFont()) gives
+//use the fetched font details to apply a random font to the target element
 async function getFont(targetElement){
     //use an async function to wait for this promise to resolve
-    fontDetails = await fetchFont();
+    fontDetails = await fetchFontDetails();
     fontOnlyStyleSheet.textContent = `
             @font-face{
                 font-family: "${fontDetails.fontFamily}";
                 src: url('${fontDetails.src}')  format("truetype");
-                 font-display: swap;
+                font-display: swap;
             }
         `
     targetElement.style.fontFamily =  `"${fontDetails.fontFamily}"`
