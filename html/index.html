@@ -173,11 +173,19 @@
   
   <!-- Preload critical assets -->
   <link rel="preload" as="style" href="/css/styles.css">
+   <link rel="preload" as="style" href="/css/index.css">
   <link rel="preload" as="font" type="font/woff2" href="/fonts/main-font.woff2" crossorigin>
-  
+
+
+
   <!-- Main stylesheet -->
+     <link rel="stylesheet" href="/css/index.css">
   <link rel="stylesheet" href="/css/styles.css">
+
   
+    <!-- TAILWINDCSS CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
   <!-- Google Fonts (example) -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
@@ -202,7 +210,42 @@
   
   <!-- Main content -->
   <main id="main-content">
-    <!-- Your main content here -->
+      <section class="max-w-screen min-h-screen hero-section flex bg-[linear-gradient(100deg,var(--color-secondary-lighter)_10%,var(--color-secondary-lightest)_30%,var(--color-primary-lighter)_60%)]
+ flex-col flex-wrap py-(--space-5) ">
+          <div class="hero-main w-full h-[70%] flex justify-center flex-col items-center gap-(--space-4) ">
+               <h3 class="hero-tag bg-(--color-primary) p-(--space-2) rounded-2xl text-white font-serif font-extrathin"><i class="fas fa-"> </i>feel, re-imagine, create</h3>
+             <h1 class="font-[plaster] text-5xl px-3 ">Re imagine</h1>
+             <p class="text-wrap  font-serif text-center px-2">Fuel your imagination <br>turn emotion into color, energy into motion, and ideas into experience.</p>
+             <img src="../img/download__2_-removebg-preview.png" alt="a man on the air with icons around him" srcset="" class="max-h-96 ">
+          </div>
+          <div class="hero-sub-main w-full h-[30%] flex flex-wrap  justify-center">
+               <div class="features  p-(--space-3) border-2 w-[90%] md:w-1/2">
+                    <h2 class="decoration-wavy underline decoration-underline-offset-10 text-(length:--text-section-heading-mobile) ">Features</h2>
+               <ul>
+                    <li>Feature 1</li>
+                    <li>Feature 2</li>
+                    <li>Feature 3</li>
+                    <li>Feature 3</li>
+               </ul> 
+               </div>
+             <div class="about-us p-(--space-3) md:w-1/2">
+               <h2>About Us</h2>
+               <p class=" ">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+             </div>
+          </div>
+      </section>     
+      <article class="sign-up">
+           <h2 class="sign-up">Sign Up</h2>
+          <form action="">
+                 <label for="firstName">First Name</label>       
+                 <input type="text" name="" id="firstName" placeholder="iom " required>
+                 <label for="lastName">Last Name</label>
+                 <input type="text" name="" id="lastName" placeholder="future" required>
+
+                 <label for="role">Tech Role</label>
+                 <input type="text" name="" id="role" placeholder="front-end developer" required>
+          </form>
+      </article>  
   </main>
   
   <!-- Footer section -->

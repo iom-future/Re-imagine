@@ -1,0 +1,7 @@
+{
+  "github.copilot.enable": false,
+  "editor.intelliCodeSuggestions.enabled": false,
+  "continue.enableTabAutocomplete": false,
+  "cody.autocomplete.completeSuggestWidgetSelection": false,
+  "cody.suggestions.mode": "off"
+}
